@@ -1,7 +1,8 @@
 import { Metadata } from "next";
 import { PlusCircle } from "lucide-react";
 import "../../styles/globals.css";
-
+import LoanApplication from "@/components/LoanApplication";
+import LoanPayment from "@/components/LoanPayment";
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";

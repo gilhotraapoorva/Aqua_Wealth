@@ -1,100 +1,85 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { makeLoanPayment } from"@/lib/api";
 
 export default function RepaymentPage() {
-  // Form fields (no status field)
   const [loanId, setLoanId] = useState("");
   const [amount, setAmount] = useState("");
-  const [paymentDate, setPaymentDate] = useState("");
   const [paymentType, setPaymentType] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<{ type: string; text: string } | null>(null);
 
-  // Local array to display submitted payments (for demo)
-  const [payments, setPayments] = useState<any[]>([]);
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newPayment = {
-      loan_id: loanId,
-      amount,
-      payment_date: paymentDate,
-      payment_type: paymentType,
-    };
-    setPayments((prev) => [...prev, newPayment]);
+    setLoading(true);
+    setMessage(null);
 
-    // Reset form
-    setLoanId("");
-    setAmount("");
-    setPaymentDate("");
-    setPaymentType("");
+    try {
+      const paymentData = { loanId, amount, paymentType };
+      const response = await makeLoanPayment(paymentData);
+      setMessage({ type: "success", text: response.message });
 
-    alert("Payment record added (local state only)!");
+      // Reset form fields after successful payment
+      setLoanId("");
+      setAmount("");
+      setPaymentType("");
+    } catch (error) {
+      setMessage({ type: "error", text: "Payment failed. Please try again." });
+    }
+
+    setLoading(false);
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md rounded bg-white p-6 shadow">
-        <h1 className="text-2xl font-bold mb-4">Repayment</h1>
-        <p className="mb-6">
-          Record your loan payments here. Fill out the form below to add a new payment.
-        </p>
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-green-900 via-blue-800 to-blue-600 p-10 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/water-texture.png')] bg-cover bg-center opacity-30"></div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 mb-8">
-          {/* Loan ID */}
-          <div>
-            <label htmlFor="loanId" className="block mb-1 font-medium">
-              Loan ID
-            </label>
-            <input
-              type="text"
-              id="loanId"
-              className="w-full rounded border px-3 py-2"
-              value={loanId}
-              onChange={(e) => setLoanId(e.target.value)}
-              placeholder="Enter the Loan ID"
-              required
-            />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="w-full max-w-lg rounded-3xl bg-blue-900/40 backdrop-blur-xl p-10 shadow-2xl border border-blue-400/20 relative z-10"
+      >
+        <h1 className="text-4xl font-extrabold text-green-300 text-center mb-6 drop-shadow-lg tracking-wide">
+           Repayment Portal
+        </h1>
+
+        {/* Success/Error Message */}
+        {message && (
+          <div
+            className={`mb-4 p-3 rounded-xl text-center font-semibold ${
+              message.type === "success" ? "bg-green-500/80 text-white" : "bg-red-500/80 text-white"
+            }`}
+          >
+            {message.text}
           </div>
+        )}
 
-          {/* Amount */}
-          <div>
-            <label htmlFor="amount" className="block mb-1 font-medium">
-              Amount
-            </label>
-            <input
-              type="number"
-              id="amount"
-              className="w-full rounded border px-3 py-2"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              placeholder="Payment amount"
-              required
-            />
-          </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Loan ID & Amount Fields */}
+          {[
+            { label: "Loan ID", value: loanId, setter: setLoanId, type: "text" },
+            { label: "Amount", value: amount, setter: setAmount, type: "number" },
+          ].map(({ label, value, setter, type }, index) => (
+            <div key={index}>
+              <label className="block mb-2 text-green-200 font-semibold text-lg">{label}</label>
+              <input
+                type={type}
+                className="w-full rounded-xl bg-blue-800/50 text-white px-4 py-3 border border-green-500/40 focus:ring-2 focus:ring-green-400 focus:outline-none backdrop-blur-lg shadow-md"
+                value={value}
+                onChange={(e) => setter(e.target.value)}
+                required
+              />
+            </div>
+          ))}
 
-          {/* Payment Date */}
+          {/* Payment Type Dropdown */}
           <div>
-            <label htmlFor="paymentDate" className="block mb-1 font-medium">
-              Payment Date
-            </label>
-            <input
-              type="datetime-local"
-              id="paymentDate"
-              className="w-full rounded border px-3 py-2"
-              value={paymentDate}
-              onChange={(e) => setPaymentDate(e.target.value)}
-              required
-            />
-          </div>
-
-          {/* Payment Type */}
-          <div>
-            <label htmlFor="paymentType" className="block mb-1 font-medium">
-              Payment Type
-            </label>
+            <label className="block mb-2 text-green-200 font-semibold text-lg">Payment Type</label>
             <select
-              id="paymentType"
-              className="w-full rounded border px-3 py-2"
+              className="w-full rounded-xl bg-blue-800/50 text-white px-4 py-3 border border-green-500/40 focus:ring-2 focus:ring-green-400 focus:outline-none backdrop-blur-lg shadow-md"
               value={paymentType}
               onChange={(e) => setPaymentType(e.target.value)}
               required
@@ -103,43 +88,23 @@ export default function RepaymentPage() {
               <option value="ONLINE">ONLINE</option>
               <option value="CASH">CASH</option>
               <option value="CHEQUE">CHEQUE</option>
-              {/* Add more if needed */}
             </select>
           </div>
 
-          <button
+          {/* Submit Button with Loading State */}
+          <motion.button
+            whileHover={{ scale: 1.05, boxShadow: "0px 0px 15px rgba(144, 238, 144, 0.8)" }}
+            whileTap={{ scale: 0.95 }}
             type="submit"
-            className="w-full rounded bg-green-600 px-4 py-2 font-semibold text-white hover:bg-green-700"
+            disabled={loading}
+            className={`w-full rounded-xl px-6 py-3 text-white font-bold text-lg transition-all shadow-lg ${
+              loading ? "bg-gray-500 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
+            }`}
           >
-            Record Payment
-          </button>
+            {loading ? "Processing..." : "Record Payment"}
+          </motion.button>
         </form>
-
-        {/* Display local payment records */}
-        {payments.length > 0 && (
-          <div>
-            <h2 className="text-xl font-semibold mb-2">Recorded Payments</h2>
-            <ul className="space-y-2">
-              {payments.map((pay, index) => (
-                <li key={index} className="border p-3 rounded bg-gray-50">
-                  <p>
-                    <strong>Loan ID:</strong> {pay.loan_id}
-                  </p>
-                  <p>
-                    <strong>Amount:</strong> {pay.amount}
-                  </p>
-                  <p>
-                    <strong>Payment Date:</strong> {pay.payment_date}
-                  </p>
-                  <p>
-                    <strong>Payment Type:</strong> {pay.payment_type}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
+      </motion.div>
     </div>
   );
 }
