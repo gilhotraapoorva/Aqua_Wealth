@@ -42,3 +42,29 @@ export const makeLoanPayment = async (paymentData: any) => {
 
   return response.json();
 };
+export const applyForInsurance = async (policyData: any) => {
+  const response = await fetch(`${BASE_URL}/insurance/apply`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      user: {
+        name: policyData.userName, // Corrected nesting
+        email: policyData.email,   // Corrected nesting
+      },
+      governmentId: policyData.governmentId,
+      coverageType: policyData.coverageType,
+      coverageAmount: policyData.coverageAmount,
+      premiumAmount: policyData.coverageAmount / 30, // Calculating premium
+      startDate: policyData.startDate,
+      endDate: new Date(new Date(policyData.startDate).setFullYear(new Date(policyData.startDate).getFullYear() + 1)).toISOString().split("T")[0], // Auto-calculate end date
+      status: "ACTIVE",
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to apply for insurance");
+  }
+
+  return response.json();
+};
+
