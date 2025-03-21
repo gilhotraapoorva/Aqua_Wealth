@@ -68,3 +68,22 @@ export const applyForInsurance = async (policyData: any) => {
   return response.json();
 };
 
+export const submitClaim = async (claimData: any) => {
+  const response = await fetch(`${BASE_URL}/insurance/claim`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      governmentId: claimData.governmentId,
+      city: claimData.city,
+      date: claimData.date,
+      claimAmount: claimData.claimAmount,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error || "Failed to submit claim");
+  }
+
+  return response.json();
+};
