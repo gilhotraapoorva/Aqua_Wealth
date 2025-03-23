@@ -1,25 +1,13 @@
 import { Metadata } from "next";
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, Search } from "lucide-react";
 import "../../styles/globals.css";
-import LoanApplication from "@/components/LoanApplication";
-import LoanPayment from "@/components/LoanPayment";
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-
-
-import { InvestmentCard } from "../components/investment-card";
 import { Menu } from "../components/menu";
-import { MarketInsightsPlaceholder } from "../components/market-insights-placeholder";
 import { Sidebar } from "../components/sidebar";
-import { 
-  featuredInvestments, 
-  personalizedInvestments, 
-  performanceMetrics, 
-  clientTestimonials, 
-  investmentProcess 
-} from "../data/WaterInvestmentAlbum";
+import { featuredInvestments, personalizedInvestments } from "../data/WaterInvestmentAlbum";
 
 export const metadata: Metadata = {
   title: "AquaWealth Investment Dashboard",
@@ -28,66 +16,59 @@ export const metadata: Metadata = {
 
 export default function InvestmentDashboard() {
   return (
-    <>
-      <Menu />
-      <div className="border-t bg-background">
+    <div className="relative min-h-screen bg-gradient-to-br from-[#0a2540] to-[#0c3b5e] text-white">
+      {/* Navbar */}
+      <div className="flex items-center justify-between px-6 py-4 bg-white/10 backdrop-blur-lg shadow-lg rounded-b-lg">
+        <h1 className="text-2xl font-bold text-[#00C6FF] drop-shadow-lg">AquaWealth</h1>
+        <div className="flex items-center space-x-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-2.5 h-5 w-5 text-white/70" />
+            <input 
+              type="text" 
+              placeholder="Search investments, projects..." 
+              className="pl-10 pr-4 py-2 bg-white/20 text-white rounded-full border border-white/30 focus:ring-2 focus:ring-[#00C6FF] outline-none"
+            />
+          </div>
+          <Button className="bg-[#00C6FF] hover:bg-[#0072FF] transition-all shadow-lg shadow-cyan-500/50">
+            Start Investing
+          </Button>
+        </div>
+      </div>
+      
+      <div className="border-t border-white/10 relative z-10 mt-4">
         <div className="grid lg:grid-cols-5">
-          {/* Sidebar - Only visible on large screens */}
+          {/* Sidebar */}
           <div className="hidden lg:block lg:col-span-1">
             <Sidebar />
           </div>
 
-          {/* Main Content Area */}
-          <div className="col-span-3 lg:col-span-4 lg:border-l">
-            <div className="h-full px-4 py-6 lg:px-8">
-              <Tabs defaultValue="investments" className="h-full space-y-6">
-                {/* Tabs Navigation */}
-                <div className="flex items-center justify-between">
-                  <TabsList>
-                    <TabsTrigger value="investments">Investment Plans</TabsTrigger>
-                    <TabsTrigger value="market-insights">Market Insights</TabsTrigger>
-                    <TabsTrigger value="live-prices" disabled>
-                      Live Prices
-                    </TabsTrigger>
-                  </TabsList>
-                  <Button>
-                    <PlusCircle className="mr-2 h-4 w-4" /> Add Investment
-                  </Button>
-                </div>
+          {/* Main Content */}
+          <div className="col-span-3 lg:col-span-4 lg:border-l border-white/10 p-6 lg:p-12">
+            <Tabs defaultValue="investments" className="space-y-6">
+              {/* Tab Navigation */}
+              <div className="flex items-center justify-between">
+                <TabsList className="glassmorphic px-6 py-2 rounded-lg">
+                  <TabsTrigger value="investments">Investment Plans</TabsTrigger>
+                  <TabsTrigger value="market-insights">Market Insights</TabsTrigger>
+                  <TabsTrigger value="live-prices" disabled>
+                    Live Prices
+                  </TabsTrigger>
+                </TabsList>
+                <Button className="bg-[#00C6FF] hover:bg-[#0072FF] transition-all shadow-lg shadow-cyan-500/50">
+                  <PlusCircle className="mr-2 h-4 w-4" /> Add Investment
+                </Button>
+              </div>
 
-                {/* Investment Plans Tab Content */}
-                <TabsContent value="investments" className="border-none p-0 outline-none">
-                  <div className="space-y-6">
-                    {/* Featured Investment Solutions */}
-                    <Section title="Featured Investments" description="Explore top-performing investment opportunities." data={featuredInvestments} />
-
-                    {/* Personalized Recommendations */}
-                    <Section title="Personalized For You" description="Tailored investment options based on your preferences." data={personalizedInvestments} />
-
-                    {/* Performance Metrics */}
-                    <Section title="Performance Metrics" description="Track key performance indicators of your investments." data={performanceMetrics} />
-
-                    {/* Client Testimonials */}
-                    <Section title="Client Testimonials" description="Hear what our investors have to say." data={clientTestimonials} />
-
-                    {/* Investment Process */}
-                    <Section title="How It Works" description="Understand our investment strategies and processes." data={investmentProcess} />
-                  </div>
-                </TabsContent>
-
-                {/* Market Insights Tab Content */}
-                <TabsContent value="market-insights" className="h-full flex-col border-none p-0 data-[state=active]:flex">
-                  <h2 className="text-2xl font-semibold tracking-tight">Latest Market Trends</h2>
-                  <p className="text-sm text-muted-foreground">Stay updated with financial insights and expert analysis.</p>
-                  <Separator className="my-4" />
-                  <MarketInsightsPlaceholder />
-                </TabsContent>
-              </Tabs>
-            </div>
+              {/* Investment Plans */}
+              <TabsContent value="investments" className="border-none p-0 outline-none">
+                <Section title="Featured Investments" description="Explore top-performing investment opportunities." data={featuredInvestments} />
+                <Section title="Personalized For You" description="Tailored investment options based on your preferences." data={personalizedInvestments} />
+              </TabsContent>
+            </Tabs>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -99,30 +80,21 @@ interface SectionProps {
 }
 
 function Section({ title, description, data }: SectionProps) {
-  if (!data || data.length === 0) {
-    return null; // Hide the section if there's no data
-  }
+  if (!data || data.length === 0) return null;
 
   return (
-    <section>
-      <h2 className="text-2xl font-semibold tracking-tight">{title}</h2>
-      <p className="text-sm text-muted-foreground">{description}</p>
-      <Separator className="my-4" />
-      <ScrollArea>
-        <div className="flex space-x-4 pb-4">
-          {data.map((investment, index) => (
-            <InvestmentCard
-              key={investment.name || index} // Use index as fallback for key
-              investment={investment}
-              className="w-[200px]"
-              aspectRatio="square"
-              width={200}
-              height={200}
-            />
-          ))}
-        </div>
-        <ScrollBar orientation="horizontal" />
-      </ScrollArea>
+    <section className="bg-white/10 p-6 rounded-2xl backdrop-blur-lg shadow-lg">
+      <h2 className="text-3xl font-bold text-[#00C6FF] drop-shadow-lg">{title}</h2>
+      <p className="text-sm text-white/70">{description}</p>
+      <Separator className="my-4 border-white/20" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {data.map((investment, index) => (
+          <div key={investment.name || index} className="bg-gradient-to-r from-[#021B79] to-[#0575E6] p-6 rounded-xl shadow-lg transform transition-all hover:scale-105 hover:shadow-cyan-500/50">
+            <h3 className="text-xl font-semibold text-white drop-shadow-lg">{investment.name}</h3>
+            <p className="text-sm text-white/80 mt-2">{investment.description}</p>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

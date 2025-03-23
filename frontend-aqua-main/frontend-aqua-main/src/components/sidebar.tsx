@@ -31,7 +31,24 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
             </Link>
           </div>
         </div>
-
+  {/* Insurance Section */}
+  <div className="px-3 py-2">
+          <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">Insurance</h2>
+          <div className="space-y-1">
+            <Link href="/apply-for-insurance/form">
+              <Button variant="ghost" className="w-full justify-start">
+                <Shield className="mr-2 h-5 w-5" />
+                Apply for Insurance
+              </Button>
+            </Link>
+            <Link href="/claims">
+              <Button variant="ghost" className="w-full justify-start">
+                <CreditCard className="mr-2 h-5 w-5" />
+                Claims & Verification
+              </Button>
+            </Link>
+          </div>
+        </div>
         {/* Investments Section */}
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">Investments</h2>
@@ -57,27 +74,10 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
           </div>
         </div>
 
-        {/* Insurance Section */}
-        <div className="px-3 py-2">
-          <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">Insurance</h2>
-          <div className="space-y-1">
-            <Link href="/apply-for-insurance/form">
-              <Button variant="ghost" className="w-full justify-start">
-                <Shield className="mr-2 h-5 w-5" />
-                Apply for Insurance
-              </Button>
-            </Link>
-            <Link href="/claims">
-              <Button variant="ghost" className="w-full justify-start">
-                <CreditCard className="mr-2 h-5 w-5" />
-                Claims & Verification
-              </Button>
-            </Link>
-          </div>
-        </div>
+      
 
         {/* Emergency Fund Section */}
-        <div className="px-3 py-2">
+        {/* <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">Emergency Fund</h2>
           <div className="space-y-1">
             <Link href="/fund-status">
@@ -93,7 +93,7 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
               </Button>
             </Link>
           </div>
-        </div>
+        </div> */}
 
         {/* Micro-Loans Section */}
         <div className="px-3 py-2">
