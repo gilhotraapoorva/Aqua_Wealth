@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -65,13 +67,14 @@ public class InsurancePolicyService {
             policy.setGovernmentId(user.getGovernmentId());
         }
 
-        //  Ensure coverage amount is valid
-        if (policy.getCoverageAmount() == null || policy.getCoverageAmount() <= 0) {
+        if (policy.getCoverageAmount() == null || policy.getCoverageAmount().compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("Coverage amount must be provided and greater than 0.");
         }
 
-        //  Auto-calculate premium amount
-        policy.setPremiumAmount(policy.getCoverageAmount() / 30);
+        policy.setPremiumAmount(policy.getCoverageAmount()
+                .divide(BigDecimal.valueOf(30), 2, RoundingMode.HALF_UP)
+                .doubleValue());  // Convert to Double
+
 
         // Set start date if not provided
         if (policy.getStartDate() == null) {

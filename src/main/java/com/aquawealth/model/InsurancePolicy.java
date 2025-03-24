@@ -4,6 +4,8 @@ package com.aquawealth.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,9 +23,19 @@ public class InsurancePolicy {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false) //  Ensure proper linking to User table
     private User user;
+//    private BigDecimal remainingAmount;
+//
+//    public BigDecimal getRemainingAmount() {
+//        return remainingAmount;
+//    }
+//
+//    public void setRemainingAmount(BigDecimal remainingAmount) {
+//        this.remainingAmount = remainingAmount;
+//    }
+
 
 //    @Column(name = "government_id", nullable = false)
-    @JsonProperty("governmentId") // ✅ Ensure JSON maps correctly
+    @JsonProperty("governmentId")
     @Column(name = "government_id", nullable = false)
     private String governmentId;
 
@@ -31,8 +43,7 @@ public class InsurancePolicy {
     private String coverageType;
 
     @Column(name = "coverage_amount", nullable = false)
-    private Double coverageAmount;
-
+    private BigDecimal coverageAmount;
     @Column(name = "premium_amount", nullable = false)
     private Double premiumAmount;
 
@@ -84,11 +95,11 @@ public class InsurancePolicy {
         this.coverageType = coverageType;
     }
 
-    public Double getCoverageAmount() {
+    public BigDecimal getCoverageAmount() {
         return coverageAmount;
     }
 
-    public void setCoverageAmount(Double coverageAmount) {
+    public void setCoverageAmount(BigDecimal coverageAmount) {
         this.coverageAmount = coverageAmount;
     }
 
