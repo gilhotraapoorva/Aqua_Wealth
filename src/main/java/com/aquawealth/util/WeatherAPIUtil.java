@@ -16,7 +16,7 @@ import java.util.List;
 @Service //  Make it a Spring-managed bean
 public class WeatherAPIUtil {
 
-    private static final String API_KEY = "5abf2fcd673d4c8f8f085825251103";
+    private static final String API_KEY = "52807b6906aa453b98703212252703";
     private static final String CURRENT_WEATHER_URL = "http://api.weatherapi.com/v1/current.json?key=";
     private static final String HISTORICAL_WEATHER_URL = "http://api.weatherapi.com/v1/history.json?key=";
     private final String[] cities = {

@@ -15,6 +15,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u WHERE LOWER(TRIM(u.governmentId)) = LOWER(TRIM(:governmentId))")
     Optional<User> findByGovernmentId(@Param("governmentId") String governmentId);
     Optional<User> findByEmail(String email);
+    User findByNameAndEmailAndGovernmentId(String name, String email, String governmentId);
+
 
 }
 
