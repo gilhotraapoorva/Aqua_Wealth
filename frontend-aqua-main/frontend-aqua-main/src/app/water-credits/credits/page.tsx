@@ -93,7 +93,11 @@ export default function CreditsPage() {
         <div className="mt-8 text-center">
           <button
             className="rounded-full bg-indigo-600 px-8 py-3 text-white shadow-lg hover:bg-indigo-700 transition-all"
-            onClick={() => alert("Redirecting to credits redemption page...")}
+            onClick={() => {
+              alert("Redirecting to credits redemption page...");
+              window.location.href = "/water-credits/redeem"; // Redirects to the specified URL
+            }}
+            
           >
             Use your credits
           </button>
