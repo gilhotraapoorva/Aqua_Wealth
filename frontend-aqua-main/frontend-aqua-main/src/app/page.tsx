@@ -88,7 +88,7 @@ export default function InvestmentDashboard() {
               className="bg-[#00C6FF] hover:bg-[#0072FF] transition-all shadow-lg shadow-cyan-500/50 flex items-center"
             >
               <LogIn className="h-5 w-5 mr-2" />
-              Login
+              Login/Register
             </Button>
           )}
         </div>
