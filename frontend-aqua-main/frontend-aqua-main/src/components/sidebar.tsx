@@ -59,12 +59,12 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
                 Browse Projects
               </Button>
             </Link>
-            <Link href="/investments/risk-filter">
+            {/* <Link href="/investments/risk-filter">
               <Button variant="ghost" className="w-full justify-start">
                 <DollarSign className="mr-2 h-5 w-5" />
                 Risk Filter
               </Button>
-            </Link>
+            </Link> */}
             <Link href="/investments/my-investments">
               <Button variant="ghost" className="w-full justify-start">
                 <FileText className="mr-2 h-5 w-5" />
@@ -148,7 +148,7 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
         </div>
 
         {/* Profile Section */}
-        <div className="px-3 py-2">
+        {/* <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">Profile</h2>
           <div className="space-y-1">
             <Link href="/profile">
@@ -170,7 +170,7 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
               </Button>
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

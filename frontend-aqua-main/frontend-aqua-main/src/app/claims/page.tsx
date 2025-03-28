@@ -4,13 +4,20 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { submitClaim } from "@/lib/api";
+import { useUser } from "@/Context/UserContext"; // Import User Context
 
 export default function ClaimsPage() {
+  const { user } = useUser(); // Get user details from context
+
+  if (!user) {
+    return <p className="text-center text-red-500 font-bold">Error: User not logged in. Please log in first.</p>;
+  }
+
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
-      governmentId: "",
+      governmentId: user.governmentId || "", // Pre-fill government ID
       city: "",
-      date: new Date().toISOString().split("T")[0],
+      date: new Date().toISOString().split("T")[0], // Default to today's date
       claimAmount: "",
     },
   });
@@ -22,7 +29,7 @@ export default function ClaimsPage() {
     setError("");
     try {
       await submitClaim({
-        governmentId: data.governmentId,
+        governmentId: user.governmentId, // Use logged-in user's government ID
         city: data.city,
         date: data.date,
         claimAmount: parseFloat(data.claimAmount),
@@ -60,17 +67,29 @@ export default function ClaimsPage() {
           </div>
         ) : (
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            {[{ label: "Government ID", name: "governmentId" }, { label: "City", name: "city" }].map(({ label, name }) => (
-              <div key={name}>
+            {/* Auto-filled and non-editable fields */}
+            {[{ label: "Full Name", value: user.name }, { label: "Email", value: user.email }, { label: "Government ID", value: user.governmentId }].map(({ label, value }) => (
+              <div key={label}>
                 <label className="block mb-2 text-green-200 font-semibold text-lg">{label}</label>
                 <input
                   type="text"
-                  className="w-full rounded-xl bg-blue-800/50 text-white px-4 py-3 border border-green-500/40 focus:ring-2 focus:ring-green-400 focus:outline-none backdrop-blur-lg shadow-md"
-                  {...register(name, { required: `${label} is required` })}
+                  className="w-full rounded-xl bg-gray-700 text-white px-4 py-3 border border-green-500/40 focus:outline-none shadow-md"
+                  value={value}
+                  disabled
                 />
-                {errors[name] && <p className="text-red-400">{errors[name]?.message}</p>}
               </div>
             ))}
+
+            {/* Editable fields */}
+            <div>
+              <label className="block mb-2 text-green-200 font-semibold text-lg">City</label>
+              <input
+                type="text"
+                className="w-full rounded-xl bg-blue-800/50 text-white px-4 py-3 border border-green-500/40 focus:ring-2 focus:ring-green-400 focus:outline-none backdrop-blur-lg shadow-md"
+                {...register("city", { required: "City is required" })}
+              />
+              {errors.city && <p className="text-red-400">{errors.city.message}</p>}
+            </div>
 
             <div>
               <label className="block mb-2 text-green-200 font-semibold text-lg">Claim Date</label>
@@ -89,6 +108,7 @@ export default function ClaimsPage() {
                 className="w-full rounded-xl bg-blue-800/50 text-white px-4 py-3 border border-green-500/40 focus:ring-2 focus:ring-green-400 focus:outline-none backdrop-blur-lg shadow-md"
                 {...register("claimAmount", { required: "Claim amount is required", min: 0.1 })}
               />
+              {errors.claimAmount && <p className="text-red-400">{errors.claimAmount.message}</p>}
             </div>
 
             <motion.button
