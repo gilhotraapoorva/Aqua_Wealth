@@ -1,9 +1,7 @@
-
-
 "use client";
 
 import { Metadata } from "next";
-import { PlusCircle, Search } from "lucide-react";
+import { PlusCircle, Search, LogIn } from "lucide-react"; // Added LogIn import
 import "../../styles/globals.css";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -11,8 +9,10 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Sidebar } from "@/components/sidebar";
 import { personalizedInvestments } from "@/data/WaterInvestmentAlbum";
-import { useRouter } from "next/navigation";  // <-- New import
+import { useRouter } from "next/navigation";
 import ChatbotWidget from "@/components/ChatbotWidget";
+import LoginForm from "@/components/LoginForm";
+
 // Extend the interface to include back face properties
 interface InvestmentItem {
   name: string;
@@ -26,16 +26,15 @@ interface InvestmentItem {
 }
 
 export default function InvestmentDashboard() {
-  const router = useRouter();  // <-- Get router instance
+  const router = useRouter();
+  const [showLogin, setShowLogin] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   // Use the service categories data in place of featured investments
   const serviceCategories: InvestmentItem[] = [
     {
-      // Smart Water Insurance flip card
       name: "Smart Water Insurance",
       description: "Protect your crops from climate risks.",
-      // backTitle: "Insurance",
-      // backDescription: "Manage your insurance options",
       actions: [
         { label: "Apply for Insurance", onClick: () => router.push("/apply-for-insurance/form") },
         { label: "Claims & Verification", onClick: () => router.push("/claims") },
@@ -83,9 +82,15 @@ export default function InvestmentDashboard() {
               className="pl-10 pr-4 py-2 bg-white/20 text-white rounded-full border border-white/30 focus:ring-2 focus:ring-[#00C6FF] outline-none"
             />
           </div>
-          {/* <Button className="bg-[#00C6FF] hover:bg-[#0072FF] transition-all shadow-lg shadow-cyan-500/50">
-            Start Investing
-          </Button> */}
+          {!loggedIn && (
+            <Button
+              onClick={() => setShowLogin(true)}
+              className="bg-[#00C6FF] hover:bg-[#0072FF] transition-all shadow-lg shadow-cyan-500/50 flex items-center"
+            >
+              <LogIn className="h-5 w-5 mr-2" />
+              Login
+            </Button>
+          )}
         </div>
       </div>
 
@@ -99,54 +104,32 @@ export default function InvestmentDashboard() {
           {/* Main Content */}
           <div className="col-span-3 lg:col-span-4 lg:border-l border-white/10 p-6 lg:p-12">
             <Tabs defaultValue="investments" className="space-y-6">
-              {/* Tabs Navigation */}
               <div className="flex items-center justify-between">
                 <TabsList className="glassmorphic px-6 py-2 rounded-lg">
                   <TabsTrigger value="investments">Home</TabsTrigger>
-                  {/* <TabsTrigger value="market-insights">Market Insights</TabsTrigger> */}
-                  {/* <TabsTrigger value="live-prices" disabled>
-                    Live Prices
-                  </TabsTrigger> */}
                 </TabsList>
-                {/* <Button className="bg-[#00C6FF] hover:bg-[#0072FF] transition-all shadow-lg shadow-cyan-500/50">
-                  <PlusCircle className="mr-2 h-4 w-4" /> Add Investment
-                </Button> */}
               </div>
 
-              {/* Investment Plans */}
               <TabsContent value="investments" className="border-none p-0 outline-none">
-                {/* Replace Featured Investments with service categories */}
-                <Section
-                  title="Featured Investments"
-                  description="Explore top-performing investment opportunities."
-                  data={serviceCategories}
-                />
-                <Section
-                  title="Personalized For You"
-                  description="Tailored investment options based on your preferences."
-                  data={personalizedInvestments}
-                />
+                <Section title="Featured Investments" description="Explore top-performing investment opportunities." data={serviceCategories} />
+                <Section title="Personalized For You" description="Tailored investment options based on your preferences." data={personalizedInvestments} />
               </TabsContent>
 
-              {/* Other Tabs (Market Insights, Live Prices, etc.) */}
-              {/* <TabsContent value="market-insights">
-                <p>Market Insights content goes here.</p>
-              </TabsContent> */}
-               <ChatbotWidget />
+              <ChatbotWidget />
             </Tabs>
           </div>
         </div>
       </div>
+
+      {showLogin && <LoginForm open={showLogin} onClose={setShowLogin} setLoggedIn={setLoggedIn} />}
     </div>
   );
 }
 
 /* ---------------------------------------
    Reusable Section Component
-   ---------------------------------------
-   Renders a titled section containing 
-   multiple flip-cards.
-*/
+--------------------------------------- */
+
 interface SectionProps {
   title: string;
   description: string;
@@ -172,60 +155,24 @@ function Section({ title, description, data }: SectionProps) {
 
 /* ---------------------------------------
    FlippableCard Subcomponent
-   ---------------------------------------
-   Individual card that flips when clicked.
-*/
+--------------------------------------- */
+
 function FlippableCard({ investment }: { investment: InvestmentItem }) {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <div
-      className="relative group perspective w-full h-48 cursor-pointer"
-      onClick={() => setFlipped((prev) => !prev)}
-    >
-      <div
-        className={`relative w-full h-full transition-transform duration-500 transform-style-3d ${
-          flipped ? "rotate-y-180" : ""
-        }`}
-      >
-        {/* Front Face */}
-        <div
-          className="absolute w-full h-full bg-gradient-to-r from-[#021B79] to-[#0575E6] 
-                     rounded-xl p-6 backface-hidden flex flex-col justify-center"
-        >
-          <h3 className="text-xl font-semibold text-white drop-shadow-lg">
-            {investment.name}
-          </h3>
+    <div className="relative group perspective w-full h-48 cursor-pointer" onClick={() => setFlipped((prev) => !prev)}>
+      <div className={`relative w-full h-full transition-transform duration-500 transform preserve-3d ${flipped ? "rotate-y-180" : ""}`}>
+        <div className="absolute w-full h-full bg-gradient-to-r from-[#021B79] to-[#0575E6] rounded-xl p-6 backface-hidden flex flex-col justify-center">
+          <h3 className="text-xl font-semibold text-white drop-shadow-lg">{investment.name}</h3>
           <p className="text-sm text-white/80 mt-2">{investment.description}</p>
         </div>
-
-        {/* Back Face */}
-        <div
-          className="absolute w-full h-full bg-gradient-to-r from-[#0575E6] to-[#021B79] 
-                     rounded-xl p-6 backface-hidden rotate-y-180 flex flex-col items-center justify-center space-y-4"
-        >
-          {investment.backTitle && investment.backDescription && (
-            <div className="mb-4 text-center">
-              <h4 className="text-lg font-semibold">{investment.backTitle}</h4>
-              <p className="text-sm">{investment.backDescription}</p>
-            </div>
-          )}
-          {investment.actions && investment.actions.length > 0 ? (
-            investment.actions.map((action, idx) => (
-              <Button
-                key={idx}
-                variant="secondary"
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevent flipping back on button click
-                  action.onClick();
-                }}
-              >
-                {action.label}
-              </Button>
-            ))
-          ) : (
-            <p className="text-white">No actions available</p>
-          )}
+        <div className="absolute w-full h-full bg-gradient-to-r from-[#0575E6] to-[#021B79] rounded-xl p-6 backface-hidden rotate-y-180 flex flex-col items-center justify-center space-y-4">
+          {investment.actions?.map((action, idx) => (
+            <Button key={idx} variant="secondary" onClick={(e) => { e.stopPropagation(); action.onClick(); }}>
+              {action.label}
+            </Button>
+          ))}
         </div>
       </div>
     </div>
