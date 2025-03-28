@@ -21,7 +21,7 @@ public class ProjectController {
     @GetMapping("/all")
     public ResponseEntity<List<Project>> getAllProjects() {
         List<Project> projects = projectService.getAllProjects();
-        return ResponseEntity.ok(projects);  // ✅ Returns JSON list of projects
+        return ResponseEntity.ok(projects);  // Returns JSON list of projects
     }
 //    @GetMapping("/all")
 //    public String getAllProjects(Model model) {

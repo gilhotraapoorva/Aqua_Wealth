@@ -24,15 +24,31 @@ public class UserController {
     public List<User> getUsers() {
         return userService.getAllUsers();
     }
-
-    @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.saveUser(user);
-    }
+//
+//    @PostMapping
+//    public User createUser(@RequestBody User user) {
+//        return userService.saveUser(user);
+//    }
+//    @GetMapping("/{governmentId}")
+//    public ResponseEntity<User> getUser(@PathVariable String governmentId) {
+//        log.info("Received request for user with government_id: {}", governmentId);
+//        User user = userService.getUserByGovernmentId(governmentId);
+//        return ResponseEntity.ok(user);
+//    }
+@PostMapping
+public ResponseEntity<User> createUser(@RequestBody User user) {
+    log.info("Creating new user: {}", user);
+    User createdUser = userService.saveUser(user);
+    return ResponseEntity.ok(createdUser);
+}
     @GetMapping("/{governmentId}")
     public ResponseEntity<User> getUser(@PathVariable String governmentId) {
         log.info("Received request for user with government_id: {}", governmentId);
         User user = userService.getUserByGovernmentId(governmentId);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(user);
     }
+
 }
