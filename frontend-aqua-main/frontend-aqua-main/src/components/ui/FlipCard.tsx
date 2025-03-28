@@ -1,23 +1,42 @@
-// // src/components/ui/FlipCard.tsx
-// "use client";
-// import React from 'react';
+// components/FlipCard.tsx
+import React, { useState } from 'react';
+import styles from './FlipCard.module.css'; // Assuming you are using CSS modules
 
-// interface FlipCardProps {
-//   frontContent: React.ReactNode;
-//   backContent: React.ReactNode;
-// }
+interface FlipCardProps {
+  title: string;
+  options: { label: string; route: string }[];
+}
 
-// export const FlipCard: React.FC<FlipCardProps> = ({ frontContent, backContent }) => {
-//   return (
-//     <div className="flip-card">
-//       <div className="flip-card-inner">
-//         <div className="flip-card-front">
-//           {frontContent}
-//         </div>
-//         <div className="flip-card-back">
-//           {backContent}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+const FlipCard: React.FC<FlipCardProps> = ({ title, options }) => {
+  const [flipped, setFlipped] = useState(false);
+
+  const handleFlip = () => {
+    setFlipped((prev) => !prev);
+  };
+
+  return (
+    <div className={styles.flipCard} onClick={handleFlip}>
+      <div className={`${styles.inner} ${flipped ? styles.flipped : ''}`}>
+        <div className={styles.front}>
+          <h3>{title}</h3>
+        </div>
+        <div className={styles.back}>
+          {options.map((option, index) => (
+            <button
+              key={index}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent card flip when clicking the button
+                // Navigate to the route, e.g., using Next.js router
+                window.location.href = option.route;
+              }}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FlipCard;

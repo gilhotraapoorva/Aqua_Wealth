@@ -49,23 +49,23 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
             </Link>
           </div>
         </div>
-        {/* Investments Section */}
-        <div className="px-3 py-2">
+       {/* Investments Section */}
+       <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">Investments</h2>
           <div className="space-y-1">
-            <Link href="/investments">
+            <Link href="/investments/browse-projects">
               <Button variant="ghost" className="w-full justify-start">
                 <BarChart className="mr-2 h-5 w-5" />
                 Browse Projects
               </Button>
             </Link>
-            <Link href="/risk-filter">
+            <Link href="/investments/risk-filter">
               <Button variant="ghost" className="w-full justify-start">
                 <DollarSign className="mr-2 h-5 w-5" />
                 Risk Filter
               </Button>
             </Link>
-            <Link href="/my-investments">
+            <Link href="/investments/my-investments">
               <Button variant="ghost" className="w-full justify-start">
                 <FileText className="mr-2 h-5 w-5" />
                 My Investments
@@ -105,12 +105,12 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
                 Apply for Loan
               </Button>
             </Link>
-            <Link href="/micro-loans/status">
+            {/* <Link href="/micro-loans/status">
               <Button variant="ghost" className="w-full justify-start">
                 <BarChart className="mr-2 h-5 w-5" />
                 Loan Status
               </Button>
-            </Link>
+            </Link> */}
             <Link href="/micro-loans/repayment">
               <Button variant="ghost" className="w-full justify-start">
                 <FileText className="mr-2 h-5 w-5" />
@@ -124,13 +124,21 @@ export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">Water Credits</h2>
           <div className="space-y-1">
-            <Link href="/usage-insights">
+          <Link href="/water-credits/usage">
+
               <Button variant="ghost" className="w-full justify-start">
                 <Droplet className="mr-2 h-5 w-5" />
-                Usage Insights
+                Usage
               </Button>
             </Link>
-            <Link href="/redeem-credits">
+            <Link href="/water-credits/meters">
+
+              <Button variant="ghost" className="w-full justify-start">
+                <Droplet className="mr-2 h-5 w-5" />
+                Meters
+              </Button>
+            </Link>
+            <Link href="/water-credits/credits">
               <Button variant="ghost" className="w-full justify-start">
                 <CreditCard className="mr-2 h-5 w-5" />
                 Redeem Credits

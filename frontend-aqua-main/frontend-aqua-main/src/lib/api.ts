@@ -67,6 +67,12 @@ export const applyForInsurance = async (policyData: any) => {
 
   return response.json();
 };
+export async function getLoanStatus(loanId: string) {
+  const res = await fetch(`http://localhost:8080/payments/loan-status?loanId=${loanId}`);
+  if (!res.ok) throw new Error("Failed to fetch loan status");
+  return res.json();
+}
+
 
 export const submitClaim = async (claimData: any) => {
   const response = await fetch(`${BASE_URL}/insurance/claim`, {
@@ -138,3 +144,134 @@ export const getPaymentHistory = async (loanId: string) => {
 //     throw error;
 //   }
 // }
+export const fetchMeters = async () => {
+  const response = await fetch(`${BASE_URL}/meters/all`);
+  if (!response.ok) throw new Error("Failed to fetch meters");
+  return response.json();
+};
+
+// Add a new water meter
+export const addWaterMeter = async (meterData: any) => {
+  const response = await fetch(`${BASE_URL}/meters/save`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      meterNumber: meterData.meterNumber,
+      installationDate: meterData.installationDate,
+      lastReadingDate: meterData.lastReadingDate,
+      status: meterData.status,
+      user: {
+        name: meterData.user.name, // ✅ Match backend
+        email: meterData.user.email,
+        governmentId: meterData.user.governmentId, // ✅ Include government ID
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Failed to add meter");
+  }
+  return response.json();
+};
+// ✅ API call to add water usage
+export const addWaterUsage = async (meterId: number, usageData: any) => {
+  const response = await fetch(`${BASE_URL}/usage/add/${meterId}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(usageData),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Failed to add usage");
+  }
+  return response.json();
+};
+
+export const fetchUsageRecords = async () => {
+  const response = await fetch(`${BASE_URL}/usage/all`);
+  const data = await response.json();
+  console.log("API Response:", data); // ✅ Debugging log to check data structure
+  return data;
+};
+
+export const fetchWaterCredits = async () => {
+  const response = await fetch("http://localhost:8080/credits/all");
+  if (!response.ok) {
+    throw new Error("Failed to fetch water credits");
+  }
+  return response.json();
+};
+// Fetch all projects
+export async function fetchProjects() {
+  try {
+    const response = await fetch(`${BASE_URL}/api/projects/all`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch projects");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+    return [];
+  }
+}
+
+// Fetch all investments
+export async function fetchInvestments() {
+  try {
+    const response = await fetch(`${BASE_URL}/api/investments/all`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch investments");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching investments:", error);
+    return [];
+  }
+}
+
+export async function getInvestmentForm(projectId: number) {
+  try {
+  //   const response = await fetch(${BASE_URL}/api/investments/form, {
+  //     method: "GET",
+  //     headers: {
+  //         "Authorization": 'Bearer ${token}', // If using JWT auth
+  //         "X-Project-ID": String(projectId), // Custom header
+  //     }
+  // });
+  
+    const response = await fetch(`${BASE_URL}/api/investments/form/${projectId}, { method: "GET" }`);
+    if (!response.ok) throw new Error("Failed to fetch investment form");
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching investment form:", error);
+    throw error;
+  }
+}
+
+// Submit an investment for a project
+export async function submitInvestment(projectId: number, investmentData: any) {
+  try {
+    const response = await fetch(`${BASE_URL}/api/investments/form/${projectId}/save`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(investmentData),
+    });
+    if (!response.ok) throw new Error("Failed to submit investment");
+    return await response.json();
+  } catch (error) {
+    console.error("Error submitting investment:", error);
+    throw error;
+  }
+}
