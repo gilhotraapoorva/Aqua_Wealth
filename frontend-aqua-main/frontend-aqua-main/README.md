@@ -73,11 +73,36 @@ npm run dev
 
 ## 🗂️ Project Structure:
 ```bash
-│   ├── App.tsx         # Main component
-│   ├── index.tsx       # Entry point
-│── public/
-│── package.json
-│── README.md
+📦 aqua-wealth-frontend
+├── 📂 public         # Static assets (images, icons, etc.)
+├── 📂 src            # Source code
+│   ├── 📂 components # Reusable UI components
+│   │   ├── 📂 ui         # Shared UI elements (buttons, modals, inputs)
+│   │   ├── 📂 layout     # Page layouts and wrappers
+│   │   ├── 📂 features   # Feature-specific components
+│   ├── 📂 pages       # Next.js pages (route handlers)
+│   │   ├── 📄 _app.tsx   # Custom App component
+│   │   ├── 📄 _document.tsx # Custom Document setup
+│   │   ├── 📂 auth       # Authentication pages
+│   │   ├── 📂 dashboard  # User dashboard pages
+│   │   ├── 📂 loans      # Micro-loan pages
+│   │   ├── 📂 investments# Investment-related pages
+│   ├── 📂 styles      # Tailwind CSS & global styles
+│   ├── 📂 utils       # Helper functions and utilities
+│   ├── 📂 hooks       # Custom React hooks
+│   ├── 📂 context     # Global state management (React Context API)
+│   ├── 📂 store       # Redux store and slices (if using Redux)
+│   ├── 📂 services    # API calls and external data fetching
+│   ├── 📂 config      # App-wide configuration files (e.g., env, constants)
+│   ├── 📂 lib         # Third-party integrations (e.g., Firebase, Stripe)
+│   ├── 📂 types       # TypeScript type definitions
+│   ├── 📂 tests       # Unit and integration tests
+├── 📄 .env.example    # Example environment variables
+├── 📄 next.config.js  # Next.js configuration
+├── 📄 tailwind.config.js # Tailwind CSS configuration
+├── 📄 tsconfig.json   # TypeScript configuration
+└── 📄 README.md       # Project documentation
+
 ```
 
 ---
