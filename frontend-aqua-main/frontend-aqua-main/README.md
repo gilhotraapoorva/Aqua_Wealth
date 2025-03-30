@@ -136,10 +136,7 @@ npm run dev
 └── 📄 LICENSE
 ```
 
-
-```
-
-
+---
 
 ## 👥 Contributors
 - **Khushi Verma**
@@ -148,10 +145,9 @@ npm run dev
 - **Anisha Kumari**
 - **Ayushi Mehta**
 
-
+---
 
 ## 🌱 Project Outcome
 AquaWealth aims to enhance water security, boost agricultural resilience, and promote sustainable investments by integrating **fintech** solutions with **water conservation**. The platform offers innovative financial tools to support both farmers and investors.
 
-
-
+---
