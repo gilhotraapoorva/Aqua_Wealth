@@ -66,7 +66,7 @@ npm install
 
 ### Step 4: Start the development server
 ```bash
-npm start
+npm run dev
 ```
 
 ---
@@ -83,7 +83,8 @@ npm start
 ---
 
 ## 👥 Contributors
-- **Khushi Verma & Shubhanshi**: Investing in Water Sustainability Projects
+- **Khushi Verma **
+- ** Shubhanshi **: 
 - **Apoorva**: Water Insurance
 - **Anisha Kumari**: Water Credits
 - **Ayushi Mehta**: Micro-Loans
