@@ -2,7 +2,7 @@
 # AquaWealth - Frontend
 
 ## 📚 Table of Contents
-- Overview
+- [Overview].(#overview)
 - [Features](#features)
 - [Installation](#installation)
 - [Contributors](#contributors)
