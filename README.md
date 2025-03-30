@@ -1,8 +1,10 @@
 
+
+```markdown
 # AquaWealth - Frontend
 
 ## 📚 Table of Contents
-- [Overview].(#overview)
+- [Overview](#overview)
 - [Features](#features)
 - [Installation](#installation)
 - [Contributors](#contributors)
@@ -92,4 +94,6 @@ npm start
 
 ## 🌱 Project Outcome
 AquaWealth aims to enhance water security, boost agricultural resilience, and promote sustainable investments by integrating **fintech** solutions with **water conservation**. The platform offers innovative financial tools to support both farmers and investors.
+
+---
 
