@@ -77,8 +77,8 @@ npm run dev
 
 
 
-<details>
-  <summary>📂 Project Structure (Click to Expand)</summary>
+<div style="max-height: 400px; overflow-y: auto; border: 1px solid #d1d5da; padding: 10px; border-radius: 8px; background: #f6f8fa; white-space: nowrap;">
+
 
 
 
@@ -170,7 +170,7 @@ npm run dev
     │   │   └── 📄 tsconfig.json
 ```
 
-</details>
+</div>
 
 
 
