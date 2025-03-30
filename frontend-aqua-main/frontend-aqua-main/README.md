@@ -66,7 +66,7 @@ npm install
 
 ### Step 4: Start the development server
 ```bash
-npm start
+npm run dev
 ```
 
 ---
@@ -83,10 +83,11 @@ npm start
 ---
 
 ## 👥 Contributors
-- **Khushi Verma & Shubhanshi**: Investing in Water Sustainability Projects
-- **Apoorva**: Water Insurance
-- **Anisha Kumari**: Water Credits
-- **Ayushi Mehta**: Micro-Loans
+- **Khushi Verma**
+- **Shubhanshi** 
+- **Apoorva**
+- **Anisha Kumari**
+- **Ayushi Mehta**
 
 ---
 
@@ -94,3 +95,4 @@ npm start
 AquaWealth aims to enhance water security, boost agricultural resilience, and promote sustainable investments by integrating **fintech** solutions with **water conservation**. The platform offers innovative financial tools to support both farmers and investors.
 
 ---
+
