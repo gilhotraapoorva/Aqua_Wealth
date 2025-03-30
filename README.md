@@ -83,11 +83,11 @@ npm run dev
 ---
 
 ## 👥 Contributors
-- **Khushi Verma **
-- ** Shubhanshi **: 
-- **Apoorva**: Water Insurance
-- **Anisha Kumari**: Water Credits
-- **Ayushi Mehta**: Micro-Loans
+- **Khushi Verma**
+- **Shubhanshi** 
+- **Apoorva**
+- **Anisha Kumari**
+- **Ayushi Mehta**
 
 ---
 
