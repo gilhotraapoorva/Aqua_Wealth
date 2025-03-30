@@ -77,7 +77,6 @@ npm run dev
 
 
 
-<div style="max-height: 400px; overflow-y: auto; border: 1px solid #d1d5da; padding: 10px; border-radius: 8px; background: #f6f8fa; white-space: nowrap;">
 
 
 
@@ -168,7 +167,7 @@ npm run dev
     │   │   ├── 📄 tailwind.config.js
     │   │   ├── 📄 tailwind.config.ts
     │   │   └── 📄 tsconfig.json
-</div>
+
 
 ```
 
