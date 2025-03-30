@@ -5,6 +5,7 @@
 - [Overview](#overview)
 - [Features](#features)
 - [Installation](#installation)
+- [Project Structure](#project-structure)
 - [Contributors](#contributors)
 - [Project Outcome](#project-outcome)
 
@@ -72,36 +73,68 @@ npm run dev
 ---
 
 ## 🗂️ Project Structure:
-📦 aqua-wealth-frontend
-├── 📂 public         # Static assets (images, icons, etc.)
-├── 📂 src            # Source code
-│   ├── 📂 components # Reusable UI components
-│   │   ├── 📂 ui         # Shared UI elements (buttons, modals, inputs)
-│   │   ├── 📂 layout     # Page layouts and wrappers
-│   │   ├── 📂 features   # Feature-specific components
-│   ├── 📂 pages       # Next.js pages (route handlers)
-│   │   ├── 📄 _app.tsx   # Custom App component
-│   │   ├── 📄 _document.tsx # Custom Document setup
-│   │   ├── 📂 auth       # Authentication pages
-│   │   ├── 📂 dashboard  # User dashboard pages
-│   │   ├── 📂 loans      # Micro-loan pages
-│   │   ├── 📂 investments# Investment-related pages
-│   ├── 📂 styles      # Tailwind CSS & global styles
-│   ├── 📂 utils       # Helper functions and utilities
-│   ├── 📂 hooks       # Custom React hooks
-│   ├── 📂 context     # Global state management (React Context API)
-│   ├── 📂 store       # Redux store and slices (if using Redux)
-│   ├── 📂 services    # API calls and external data fetching
-│   ├── 📂 config      # App-wide configuration files (e.g., env, constants)
-│   ├── 📂 lib         # Third-party integrations (e.g., Firebase, Stripe)
-│   ├── 📂 types       # TypeScript type definitions
-│   ├── 📂 tests       # Unit and integration tests
-├── 📄 .env.example    # Example environment variables
-├── 📄 next.config.js  # Next.js configuration
-├── 📄 tailwind.config.js # Tailwind CSS configuration
-├── 📄 tsconfig.json   # TypeScript configuration
-└── 📄 README.md       # Project documentation
+```bash
+```bash
 
+📂 Aqua-Wealth
+├── 📂 frontend-aqua
+│   ├── 📂 .next
+│   ├── 📂 node_modules
+│   ├── 📂 public
+│   ├── 📂 src
+│   │   ├── 📂 app
+│   │   │   ├── 📂 api
+│   │   │   │   ├── 📂 gemini
+│   │   │   │   └── 📂 vouchers
+│   │   │   ├── 📂 apply-for-insurance
+│   │   │   │   └── 📂 form
+│   │   │   │       └── 📂 success
+│   │   │   │           └── 📄 page.tsx
+│   │   │   ├── 📂 claims
+│   │   │   │   └── 📄 page.tsx
+│   │   │   ├── 📂 dashboard
+│   │   │   ├── 📂 insurance
+│   │   │   │   └── 📂 investments
+│   │   │   │       ├── 📂 browse-projects
+│   │   │   │       ├── 📂 my-investments
+│   │   │   │       └── 📂 risk-filter
+│   │   │   ├── 📂 login
+│   │   │   │   └── 📄 page.tsx
+│   │   │   ├── 📂 micro-loans
+│   │   │   │   ├── 📂 apply
+│   │   │   │   │   └── 📂 repayment
+│   │   │   │   │       └── 📂 status
+│   │   ├── 📂 components
+│   │   │   ├── 📂 ui
+│   │   │   ├── 📄 AuthForm.tsx
+│   │   │   ├── 📄 ChatbotWidget.tsx
+│   │   │   ├── 📄 InvestmentCard.tsx
+│   │   │   ├── 📄 LoanApplication.tsx
+│   │   │   ├── 📄 LoanPayment.tsx
+│   │   │   ├── 📄 LoginForm.tsx
+│   │   │   ├── 📄 MarketInsights.tsx
+│   │   │   ├── 📄 Menu.tsx
+│   │   │   ├── 📄 Sidebar.tsx
+│   │   ├── 📂 context
+│   │   ├── 📂 data
+│   │   ├── 📂 lib
+│   │   ├── 📂 services
+│   │   ├── 📂 utils
+│   │   ├── 📂 styles
+├── 📄 .gitignore
+├── 📄 eslint.config.mjs
+├── 📄 next-env.d.ts
+├── 📄 next.config.ts
+├── 📄 package-lock.json
+├── 📄 package.json
+├── 📄 postcss.config.js
+├── 📄 postcss.config.mjs
+├── 📄 README.md
+├── 📄 tailwind.config.js
+├── 📄 tailwind.config.ts
+├── 📄 tsconfig.json
+└── 📄 LICENSE
+```
 
 ---
 
@@ -118,4 +151,3 @@ npm run dev
 AquaWealth aims to enhance water security, boost agricultural resilience, and promote sustainable investments by integrating **fintech** solutions with **water conservation**. The platform offers innovative financial tools to support both farmers and investors.
 
 ---
-
