@@ -168,9 +168,11 @@ npm run dev
     │   │   ├── 📄 tailwind.config.js
     │   │   ├── 📄 tailwind.config.ts
     │   │   └── 📄 tsconfig.json
+</div>
+
 ```
 
-</div>
+
 
 
 
