@@ -77,21 +77,9 @@ npm run dev
 
 
 
-<style>
-  /* Scrollable folder structure */
-  .folder-structure {
-      font-family: 'Courier New', Courier, monospace;
-      background: #f6f8fa;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #d1d5da;
-      overflow-x: auto;
-      max-height: 400px;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  }
-</style>
+# 📂 Aqua-Wealth Project Structure
 
-<div class="folder-structure">
+
 
 ```bash
 📂 Aqua-Wealth-frontend/
@@ -180,17 +168,10 @@ npm run dev
     │   │   ├── 📄 tailwind.config.ts
     │   │   └── 📄 tsconfig.json
 ```
-</div>
 
----
 
-### ✅ Features:
-1. **🎨 Emoji-enhanced** for better **visual hierarchy**.
-2. **📜 Scrollable** (`max-height: 400px; overflow-x: auto;`)
-3. **📦 Organized** using folders and categories.
-4. **💻 GitHub-Compatible** - Works inside **README.md**
 
-🚀 **Copy and paste into your `README.md` for a professional touch!**
+
 
 
 
