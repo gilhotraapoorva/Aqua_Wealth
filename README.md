@@ -77,7 +77,8 @@ npm run dev
 
 
 
-# 📂 Aqua-Wealth Project Structure
+<details>
+  <summary>📂 Project Structure (Click to Expand)</summary>
 
 
 
@@ -169,7 +170,7 @@ npm run dev
     │   │   └── 📄 tsconfig.json
 ```
 
-
+</details>
 
 
 
