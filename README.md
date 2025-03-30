@@ -1,6 +1,4 @@
 
-
-```markdown
 # AquaWealth - Frontend
 
 ## 📚 Table of Contents
