@@ -75,7 +75,7 @@ npm run dev
 ## 🗂️ Project Structure:
 
 
-# 📂 Aqua-Wealth Project Structure
+
 
 <style>
   /* Scrollable folder structure */
@@ -94,72 +94,105 @@ npm run dev
 <div class="folder-structure">
 
 ```bash
-Aqua-Wealth-frontend/
-├── README.md
-├── package-lock.json
-└── frontend-aqua-main/
-    ├── package-lock.json
-    ├── frontend-aqua-main/
-    │   ├── .gitignore
-    │   ├── README.md
-    │   ├── components.json
-    │   ├── eslint.config.mjs
-    │   ├── next.config.ts
-    │   ├── package.json
-    │   ├── public/
-    │   │   ├── assets/
-    │   │   │   ├── chat-logo.svg
-    │   │   │   ├── file.svg
-    │   │   │   ├── globe.svg
-    │   │   │   ├── next.svg
-    │   │   │   ├── vercel.svg
-    │   │   │   ├── window.svg
-    │   │   │   ├── water-texture.png
-    │   │   │   ├── vouchers/
-    │   │   │   │   └── user123/
-    │   │   │   │       ├── 1.jpg
-    │   │   │   │       ├── 2.jpg
-    │   │   │   │       └── 3.png
-    │   │   ├── images/
-    │   │   │   ├── Calendula-10.jpg
-    │   │   │   ├── teodor-drobota-uyyRJA2an4o-unsplash.jpg
-    │   │   │   ├── zeynep-sumer-lk3F07BN8T8-unsplash.jpg
-    │   ├── src/
-    │   │   ├── Context/
-    │   │   ├── app/
-    │   │   ├── components/
-    │   │   ├── data/
-    │   │   ├── lib/
-    │   │   ├── services/
-    │   │   ├── styles/
-    │   │   └── utils/
-    │   ├── tailwind.config.js
-    │   ├── tsconfig.json
-Aqua-Wealth-backend/
-├── .gitignore
-├── README.md
-├── pom.xml
-└── src/
-    ├── main/
-    │   ├── java/
-    │   │   └── com/aquawealth/
-    │   │       ├── config/
-    │   │       ├── controller/
-    │   │       ├── model/
-    │   │       ├── repository/
-    │   │       ├── service/
-    │   │       └── util/
-    │   ├── resources/
-    │   │   ├── application.properties
-    │   │   └── webapp/WEB-INF/views/
-    │   │       ├── apply-loan.jsp
-    │   │       ├── claimInsurance.jsp
-    │   │       ├── index.jsp
-    │   │       ├── notifications.jsp
-    │   │       └── payment-success.jsp
-    ├── test/
-    │   └── java/com/
-    │       └── AquawealthApplicationTests.java
+📂 Aqua-Wealth-frontend/
+├── 📄 README.md
+├── 📄 package-lock.json
+└── 📂 frontend-aqua-main/
+    ├── 📄 package-lock.json
+    ├── 📂 frontend-aqua-main/
+    │   ├── 📄 .gitignore
+    │   ├── 📄 README.md
+    │   ├── 📄 components.json
+    │   ├── 📄 eslint.config.mjs
+    │   ├── 📄 next.config.ts
+    │   ├── 📄 package-lock.json
+    │   ├── 📄 package.json
+    │   ├── ⚙️ postcss.config.js
+    │   ├── ⚙️ postcss.config.mjs
+    │   ├── 📂 public/
+    │   │   ├── 🖼️ Calendula-10.jpg
+    │   │   ├── 🎨 chat-logo.svg
+    │   │   ├── 📜 file.svg
+    │   │   ├── 🌍 globe.svg
+    │   │   ├── 🔄 next.svg
+    │   │   ├── 🏞️ teodor-drobota.jpg
+    │   │   ├── ⚡ vercel.svg
+    │   │   ├── 📂 vouchers/
+    │   │   │   └── 👤 user123/
+    │   │   │       ├── 🖼️ 1.jpg
+    │   │   │       ├── 🖼️ 2.jpg
+    │   │   │       └── 🖼️ 3.png
+    │   │   ├── 🌊 water-texture.png
+    │   │   ├── 🖼️ window.svg
+    │   │   └── 🏞️ zeynep-sumer.jpg
+    │   ├── 📂 src/
+    │   │   ├── 📂 Context/
+    │   │   │   └── 📄 UserContext.tsx
+    │   │   ├── 📂 app/
+    │   │   │   ├── 📂 api/
+    │   │   │   │   ├── 🧠 gemini/
+    │   │   │   │   │   └── 🔄 route.ts
+    │   │   │   │   └── 💳 vouchers/
+    │   │   │   │       └── 👤 [userId]/
+    │   │   │   │           └── 🔄 route.ts
+    │   │   │   ├── 🛡️ apply-for-insurance/
+    │   │   │   │   ├── 📝 form/
+    │   │   │   │   │   └── 📄 page.tsx
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   │   └── ✅ success/
+    │   │   │   │       └── 📄 page.tsx
+    │   │   │   ├── 📜 layout.tsx
+    │   │   │   ├── 📊 dashboard/
+    │   │   │   │   └── 📄 page.tsx
+    │   │   │   ├── 🔐 login/
+    │   │   │   │   └── 📄 page.tsx
+    │   │   │   ├── 💰 investments/
+    │   │   │   │   ├── 🔎 browse-projects/
+    │   │   │   │   │   └── 📄 page.tsx
+    │   │   │   │   ├── 💰 my-investments/
+    │   │   │   │   │   ├── 📊 graph.tsx
+    │   │   │   │   │   ├── 📄 page.tsx
+    │   │   │   │   │   └── 📋 table.tsx
+    │   │   │   │   ├── 📉 risk-filter/
+    │   │   │   │   │   └── 📄 page.tsx
+    │   │   ├── 📂 components/
+    │   │   │   ├── 🛠️ AuthForm.tsx
+    │   │   │   ├── 🤖 ChatbotWidget.tsx
+    │   │   │   ├── 💳 LoanApplication.tsx
+    │   │   │   ├── 💰 LoanPayment.tsx
+    │   │   │   ├── 📄 LoginForm.tsx
+    │   │   │   ├── 📊 investment-card.tsx
+    │   │   │   ├── 📰 market-insights-placeholder.tsx
+    │   │   │   ├── 📂 ui/
+    │   │   │   │   ├── 🎨 FlipCard.module.css
+    │   │   │   │   ├── 🔄 FlipCard.tsx
+    │   │   │   │   ├── 🔘 button.tsx
+    │   │   │   │   ├── 📄 card.tsx
+    │   │   │   │   ├── 📋 table.tsx
+    │   │   │   │   └── 📜 tabs.tsx
+    │   │   ├── 📂 services/
+    │   │   │   └── 🤖 geminiService.ts
+    │   │   ├── 📂 utils/
+    │   │   │   └── 🔐 auth.ts
+    │   │   ├── 📂 styles/
+    │   │   │   └── 🎨 globals.css
+    │   │   ├── 📄 tailwind.config.js
+    │   │   ├── 📄 tailwind.config.ts
+    │   │   └── 📄 tsconfig.json
+```
+</div>
+
+---
+
+### ✅ Features:
+1. **🎨 Emoji-enhanced** for better **visual hierarchy**.
+2. **📜 Scrollable** (`max-height: 400px; overflow-x: auto;`)
+3. **📦 Organized** using folders and categories.
+4. **💻 GitHub-Compatible** - Works inside **README.md**
+
+🚀 **Copy and paste into your `README.md` for a professional touch!**
+
+
 
 ---
 
