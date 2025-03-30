@@ -74,6 +74,7 @@ npm run dev
 
 ## 🗂️ Project Structure:
 ```bash
+```bash
 
 📂 Aqua-Wealth
 ├── 📂 frontend-aqua
