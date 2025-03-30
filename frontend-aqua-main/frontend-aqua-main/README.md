@@ -5,6 +5,7 @@
 - [Overview](#overview)
 - [Features](#features)
 - [Installation](#installation)
+- [Project Structure](#project-structure)
 - [Contributors](#contributors)
 - [Project Outcome](#project-outcome)
 
