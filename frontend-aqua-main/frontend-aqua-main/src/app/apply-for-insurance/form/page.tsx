@@ -25,10 +25,7 @@ export default function BuyInsurancePage() {
       </div>
     );
   }
-  // if (!user) {
-    
-  //   //return <p className="text-center text-red-500 font-bold">Error: User not logged in. Please log in first.</p>;
-  // }
+  
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
     resolver: zodResolver(insuranceSchema),
