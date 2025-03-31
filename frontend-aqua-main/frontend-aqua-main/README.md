@@ -73,68 +73,109 @@ npm run dev
 ---
 
 ## 🗂️ Project Structure:
-```bash
-```bash
 
-📂 Aqua-Wealth
-├── 📂 frontend-aqua
-│   ├── 📂 .next
-│   ├── 📂 node_modules
-│   ├── 📂 public
-│   ├── 📂 src
-│   │   ├── 📂 app
-│   │   │   ├── 📂 api
-│   │   │   │   ├── 📂 gemini
-│   │   │   │   └── 📂 vouchers
-│   │   │   ├── 📂 apply-for-insurance
-│   │   │   │   └── 📂 form
-│   │   │   │       └── 📂 success
-│   │   │   │           └── 📄 page.tsx
-│   │   │   ├── 📂 claims
-│   │   │   │   └── 📄 page.tsx
-│   │   │   ├── 📂 dashboard
-│   │   │   ├── 📂 insurance
-│   │   │   │   └── 📂 investments
-│   │   │   │       ├── 📂 browse-projects
-│   │   │   │       ├── 📂 my-investments
-│   │   │   │       └── 📂 risk-filter
-│   │   │   ├── 📂 login
-│   │   │   │   └── 📄 page.tsx
-│   │   │   ├── 📂 micro-loans
-│   │   │   │   ├── 📂 apply
-│   │   │   │   │   └── 📂 repayment
-│   │   │   │   │       └── 📂 status
-│   │   ├── 📂 components
-│   │   │   ├── 📂 ui
-│   │   │   ├── 📄 AuthForm.tsx
-│   │   │   ├── 📄 ChatbotWidget.tsx
-│   │   │   ├── 📄 InvestmentCard.tsx
-│   │   │   ├── 📄 LoanApplication.tsx
-│   │   │   ├── 📄 LoanPayment.tsx
-│   │   │   ├── 📄 LoginForm.tsx
-│   │   │   ├── 📄 MarketInsights.tsx
-│   │   │   ├── 📄 Menu.tsx
-│   │   │   ├── 📄 Sidebar.tsx
-│   │   ├── 📂 context
-│   │   ├── 📂 data
-│   │   ├── 📂 lib
-│   │   ├── 📂 services
-│   │   ├── 📂 utils
-│   │   ├── 📂 styles
-├── 📄 .gitignore
-├── 📄 eslint.config.mjs
-├── 📄 next-env.d.ts
-├── 📄 next.config.ts
-├── 📄 package-lock.json
-├── 📄 package.json
-├── 📄 postcss.config.js
-├── 📄 postcss.config.mjs
+
+
+
+
+
+
+
+```bash
+📂 Aqua-Wealth-frontend/
 ├── 📄 README.md
-├── 📄 tailwind.config.js
-├── 📄 tailwind.config.ts
-├── 📄 tsconfig.json
-└── 📄 LICENSE
+├── 📄 package-lock.json
+└── 📂 frontend-aqua-main/
+    ├── 📄 package-lock.json
+    ├── 📂 frontend-aqua-main/
+    │   ├── 📄 .gitignore
+    │   ├── 📄 README.md
+    │   ├── 📄 components.json
+    │   ├── 📄 eslint.config.mjs
+    │   ├── 📄 next.config.ts
+    │   ├── 📄 package-lock.json
+    │   ├── 📄 package.json
+    │   ├── ⚙️ postcss.config.js
+    │   ├── ⚙️ postcss.config.mjs
+    │   ├── 📂 public/
+    │   │   ├── 🖼️ Calendula-10.jpg
+    │   │   ├── 🎨 chat-logo.svg
+    │   │   ├── 📜 file.svg
+    │   │   ├── 🌍 globe.svg
+    │   │   ├── 🔄 next.svg
+    │   │   ├── 🏞️ teodor-drobota.jpg
+    │   │   ├── ⚡ vercel.svg
+    │   │   ├── 📂 vouchers/
+    │   │   │   └── 👤 user123/
+    │   │   │       ├── 🖼️ 1.jpg
+    │   │   │       ├── 🖼️ 2.jpg
+    │   │   │       └── 🖼️ 3.png
+    │   │   ├── 🌊 water-texture.png
+    │   │   ├── 🖼️ window.svg
+    │   │   └── 🏞️ zeynep-sumer.jpg
+    │   ├── 📂 src/
+    │   │   ├── 📂 Context/
+    │   │   │   └── 📄 UserContext.tsx
+    │   │   ├── 📂 app/
+    │   │   │   ├── 📂 api/
+    │   │   │   │   ├── 🧠 gemini/
+    │   │   │   │   │   └── 🔄 route.ts
+    │   │   │   │   └── 💳 vouchers/
+    │   │   │   │       └── 👤 [userId]/
+    │   │   │   │           └── 🔄 route.ts
+    │   │   │   ├── 🛡️ apply-for-insurance/
+    │   │   │   │   ├── 📝 form/
+    │   │   │   │   │   └── 📄 page.tsx
+    │   │   │   │   ├── 📄 page.tsx
+    │   │   │   │   └── ✅ success/
+    │   │   │   │       └── 📄 page.tsx
+    │   │   │   ├── 📜 layout.tsx
+    │   │   │   ├── 📊 dashboard/
+    │   │   │   │   └── 📄 page.tsx
+    │   │   │   ├── 🔐 login/
+    │   │   │   │   └── 📄 page.tsx
+    │   │   │   ├── 💰 investments/
+    │   │   │   │   ├── 🔎 browse-projects/
+    │   │   │   │   │   └── 📄 page.tsx
+    │   │   │   │   ├── 💰 my-investments/
+    │   │   │   │   │   ├── 📊 graph.tsx
+    │   │   │   │   │   ├── 📄 page.tsx
+    │   │   │   │   │   └── 📋 table.tsx
+    │   │   │   │   ├── 📉 risk-filter/
+    │   │   │   │   │   └── 📄 page.tsx
+    │   │   ├── 📂 components/
+    │   │   │   ├── 🛠️ AuthForm.tsx
+    │   │   │   ├── 🤖 ChatbotWidget.tsx
+    │   │   │   ├── 💳 LoanApplication.tsx
+    │   │   │   ├── 💰 LoanPayment.tsx
+    │   │   │   ├── 📄 LoginForm.tsx
+    │   │   │   ├── 📊 investment-card.tsx
+    │   │   │   ├── 📰 market-insights-placeholder.tsx
+    │   │   │   ├── 📂 ui/
+    │   │   │   │   ├── 🎨 FlipCard.module.css
+    │   │   │   │   ├── 🔄 FlipCard.tsx
+    │   │   │   │   ├── 🔘 button.tsx
+    │   │   │   │   ├── 📄 card.tsx
+    │   │   │   │   ├── 📋 table.tsx
+    │   │   │   │   └── 📜 tabs.tsx
+    │   │   ├── 📂 services/
+    │   │   │   └── 🤖 geminiService.ts
+    │   │   ├── 📂 utils/
+    │   │   │   └── 🔐 auth.ts
+    │   │   ├── 📂 styles/
+    │   │   │   └── 🎨 globals.css
+    │   │   ├── 📄 tailwind.config.js
+    │   │   ├── 📄 tailwind.config.ts
+    │   │   └── 📄 tsconfig.json
+
+
 ```
+
+
+
+
+
+
 
 ---
 
