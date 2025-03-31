@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@RestController // ✅ Change to REST controller for API handling
+@RestController //  Change to REST controller for API handling
 @RequestMapping("/usage")
 @CrossOrigin(origins = "http://localhost:8000")
 public class WaterUsageController {
@@ -23,17 +23,16 @@ public class WaterUsageController {
     @Autowired
     private WaterMeterRepository waterMeterRepository;
 
-    // ✅ Fetch all usage records
+    // Fetch all usage records
     @GetMapping("/all")
     public ResponseEntity<List<Map<String, Object>>> getAllUsage() {
         List<WaterUsage> usageList = waterUsageService.getAllUsageRecords();
 
         List<Map<String, Object>> response = usageList.stream().map(usage -> {
             Map<String, Object> record = new HashMap<>();
-            record.put("meterNumber", usage.getWaterMeter().getMeterNumber()); // ✅ Include meterNumber
+            record.put("meterNumber", usage.getWaterMeter().getMeterNumber()); //  Include meterNumber
             record.put("readingValue", usage.getReadingValue());
             record.put("readingDate", usage.getReadingDate());
-//            record.put("efficiencyScore", usage.getEfficiencyScore());
             return record;
         }).collect(Collectors.toList());
 
@@ -42,14 +41,14 @@ public class WaterUsageController {
 
 
 
-    // ✅ Save new water usage
+    // Save new water usage
     @PostMapping("/add/{meterId}")
     public ResponseEntity<?> saveWaterUsage(
             @PathVariable("meterId") Long meterId,
             @RequestBody WaterUsage waterUsage
     ) {
         try {
-            // ✅ Fetch the water meter by ID
+            // Fetch the water meter by ID
             Optional<WaterMeter> meterOptional = waterMeterRepository.findById(meterId);
             if (meterOptional.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -58,10 +57,10 @@ public class WaterUsageController {
 
             WaterMeter existingMeter = meterOptional.get();
 
-            // ✅ Set the water meter in the water usage record
+            // Set the water meter in the water usage record
             waterUsage.setWaterMeter(existingMeter);
 
-            // ✅ Save the water usage entry
+            // Save the water usage entry
             waterUsageService.saveUsage(waterUsage);
 
             return ResponseEntity.ok(Collections.singletonMap("success", true));

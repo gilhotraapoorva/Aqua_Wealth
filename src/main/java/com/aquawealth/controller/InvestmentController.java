@@ -37,23 +37,15 @@ public class InvestmentController {
     @GetMapping("/all")
     public ResponseEntity<List<Investment>> getAllInvestments() {
         List<Investment> investments = investmentService.getAllInvestment();
-        return ResponseEntity.ok(investments);  // ✅ Returns JSON list of investments
+        return ResponseEntity.ok(investments);  // Returns JSON list of investments
     }
-//    @GetMapping("/all")
-//    public String getAllInvestments(Model model) {
-//        model.addAttribute("investments", investmentService.getAllInvestment());
-//        return "investment-list";
-//    }
+
 
     @GetMapping("/form/{projectId}")
     public ResponseEntity<?> showInvestmentForm(@PathVariable("projectId") Long projectId) {
         return ResponseEntity.ok(Collections.singletonMap("projectId", projectId));
     }
-//    @GetMapping("/form/{projectId}")
-//    public String showInvestmentForm(@PathVariable("projectId") Long projectId, Model model) {
-//        model.addAttribute("projectId", projectId); // Pass projectId to JSP
-//        return "investment-form";  // Renders investment-form.jsp
-//    }
+
 
     @PostMapping("/form/{projectId}/save")
     public ResponseEntity<?> saveInvestment(

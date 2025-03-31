@@ -48,7 +48,4 @@ public class InvestmentService {
         return investmentRepository.save(investment);
     }
 
-//    public Investment saveInvestment(Investment investment) {
-//        return investmentRepository.save(investment);
-//    }
 }

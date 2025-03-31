@@ -28,26 +28,26 @@ public class WaterMeterController {
     @Autowired
     private WaterMeterRepository waterMeterRepository;
 
-    // ✅ Fetch all meters
+    // Fetch all meters
     @GetMapping("/all")
     public ResponseEntity<List<WaterMeter>> getAllMeters() {
         return ResponseEntity.ok(waterMeterService.getAllMeters());
     }
 
-    // ✅ Fetch single meter
+    //  Fetch single meter
     @GetMapping("/{meterId}")
     public ResponseEntity<?> getMeter(@PathVariable Long meterId) {
         Optional<WaterMeter> meter = waterMeterRepository.findById(meterId);
 
         if (meter.isPresent()) {
-            return ResponseEntity.ok(meter.get()); // ✅ Return the actual WaterMeter object
+            return ResponseEntity.ok(meter.get()); // Return the actual WaterMeter object
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(Collections.singletonMap("message", "Meter not found")); // ✅ Return JSON error response
+                    .body(Collections.singletonMap("message", "Meter not found")); // Return JSON error response
         }
     }
 
-    // ✅ Add a new water meter with user validation
+    // Add a new water meter with user validation
     @PostMapping("/save")
     public ResponseEntity<?> saveMeter(@RequestBody WaterMeter waterMeter) {
         try {
@@ -57,7 +57,7 @@ public class WaterMeterController {
             String governmentId = waterMeter.getUser().getGovernmentId();
             String meterNumber = waterMeter.getMeterNumber();
 
-            // ✅ Check if user exists with exact matching details
+            //  Check if user exists with exact matching details
             Optional<User> existingUser = waterMeterService.validateUser(name, email, governmentId);
 
             if (existingUser.isEmpty()) {
@@ -65,13 +65,13 @@ public class WaterMeterController {
                         .body(Collections.singletonMap("message", "Invalid user details"));
             }
 
-            // ✅ Check if the meter already exists
+            //  Check if the meter already exists
             if (waterMeterRepository.findByMeterNumber(meterNumber).isPresent()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                         .body(Collections.singletonMap("message", "Water meter already registered"));
             }
 
-            // ✅ Assign user and save meter
+            //  Assign user and save meter
             waterMeter.setUser(existingUser.get());
             WaterMeter savedMeter = waterMeterService.saveMeter(waterMeter);
             return ResponseEntity.ok(savedMeter);
@@ -82,7 +82,7 @@ public class WaterMeterController {
         }
     }
 
-    // ✅ Delete a water meter
+    //  Delete a water meter
     @DeleteMapping("/{meterId}")
     public ResponseEntity<?> deleteMeter(@PathVariable Long meterId) {
         if (!waterMeterRepository.existsById(meterId)) {

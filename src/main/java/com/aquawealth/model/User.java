@@ -48,24 +48,5 @@ public class User {
         this.email = email;
     }
 
-//    public List<InsurancePolicy> getPolicies() {
-//        return policies;
-//    }
-//
-//    public void setPolicies(List<InsurancePolicy> policies) {
-//        this.policies = policies;
-//    }
-//
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<InsurancePolicy> policies;
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "userId=" + userId +
-//                ", name='" + name + '\'' +
-//                ", email='" + email + '\'' +
-//                ", policies=" + policies +
-//                '}';
-//    }
 }

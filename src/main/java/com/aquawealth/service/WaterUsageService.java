@@ -20,7 +20,7 @@ public class WaterUsageService {
     }
 
     public WaterUsage saveUsage(WaterUsage usage) {
-        // ✅ Step 2: Automatically calculate and assign water credits
+        //  Step 2: Automatically calculate and assign water credits
         WaterUsage savedUsage=waterUsageRepository.save(usage);
         waterCreditService.calculateAndAssignCredits(savedUsage);
         return waterUsageRepository.save(usage);

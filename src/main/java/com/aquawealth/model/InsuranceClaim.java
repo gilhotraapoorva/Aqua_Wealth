@@ -114,11 +114,8 @@ public class InsuranceClaim {
         this.status = status;
     }
 
-//    public void setVerificationNotes(String verificationNotes) {
-//        this.verificationNotes = verificationNotes;
-//    }
 
-    // ✅ Ensuring proper getters
+    // Ensuring proper getters
     public InsurancePolicy getPolicy() {
         return policy;
     }

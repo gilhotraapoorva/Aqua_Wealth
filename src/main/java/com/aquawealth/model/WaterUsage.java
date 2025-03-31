@@ -64,12 +64,5 @@ public class WaterUsage {
         this.readingDate = readingDate;
     }
 
-//    public Double getEfficiencyScore() {
-//        return efficiencyScore;
-//    }
-//
-//    public void setEfficiencyScore(Double efficiencyScore) {
-//        this.efficiencyScore = efficiencyScore;
-//    }
 }
 

@@ -42,21 +42,12 @@ public class WaterCreditController {
         return credit != null ? ResponseEntity.ok(credit) : ResponseEntity.notFound().build();
     }
 
-//    @PostMapping
-//    public WaterCredit createCredit(@RequestBody WaterCredit credit) {
-//        return waterCreditService.saveCredit(credit);
-//    }
-
     @DeleteMapping("/credits/{id}")
     public ResponseEntity<Void> deleteCredit(@PathVariable Long id) {
         waterCreditService.deleteCredit(id);
         return ResponseEntity.noContent().build();
     }
-//    @PostMapping("/credits/calculate")
-//    public ResponseEntity<WaterCredit> calculateCredits(@RequestParam Long meterId) {
-//        WaterCredit credit = waterCreditService.calculateAndAssignCredits(meterId);
-//        return ResponseEntity.ok(credit);
-//    }
+
 }
 
 

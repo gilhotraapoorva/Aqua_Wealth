@@ -44,7 +44,7 @@ public class WaterCreditService {
     }
 
     public WaterCredit calculateAndAssignCredits(WaterUsage usage) {
-        // ✅ Fetch latest water usage for the same meter
+        // Fetch latest water usage for the same meter
         WaterUsage previousUsage = waterUsageRepository
                 .findTopByWaterMeterMeterIdOrderByReadingDateDesc(usage.getWaterMeter().getMeterId())
                 .orElse(null);
@@ -52,12 +52,12 @@ public class WaterCreditService {
         long daysElapsed = 1;
 
         if (previousUsage != null) {
-            // ✅ Calculate days between last usage and new usage (in Date format)
+            // Calculate days between last usage and new usage (in Date format)
             daysElapsed = TimeUnit.MILLISECONDS.toDays(
                     usage.getReadingDate().getTime() - previousUsage.getReadingDate().getTime()
             );
         } else {
-            // ✅ No previous usage, use meter installation date
+            //  No previous usage, use meter installation date
             Date installationDate = usage.getWaterMeter().getInstallationDate();
             if (installationDate != null) {
                 daysElapsed = TimeUnit.MILLISECONDS.toDays(
@@ -67,22 +67,22 @@ public class WaterCreditService {
         }
         daysElapsed = Math.max(daysElapsed, 1); // Ensure at least 1 day
 
-        // ✅ Calculate Average Daily Usage
+        //  Calculate Average Daily Usage
         BigDecimal dailyUsage = BigDecimal.valueOf(usage.getReadingValue())
                 .divide(BigDecimal.valueOf(daysElapsed), 2, RoundingMode.HALF_UP);
 
-        // ✅ Prevent divide-by-zero errors
+        //  Prevent divide-by-zero errors
         if (dailyUsage.compareTo(BigDecimal.ZERO) == 0) {
             dailyUsage = BigDecimal.ONE;
         }
 
-        // ✅ Calculate Efficiency Score (Capped at 200%)
+        //  Calculate Efficiency Score (Capped at 200%)
         BigDecimal efficiencyScore = BASELINE_USAGE
                 .divide(dailyUsage, 2, RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100))
                 .min(BigDecimal.valueOf(200)); // Cap at 200%
 
-        // ✅ Calculate Water Credits (Only if Efficiency > 100%)
+        //  Calculate Water Credits (Only if Efficiency > 100%)
         BigDecimal creditsEarned = BigDecimal.ZERO;
         if (efficiencyScore.compareTo(BigDecimal.valueOf(100)) > 0) {
             creditsEarned = efficiencyScore.subtract(BigDecimal.valueOf(100))
@@ -90,11 +90,11 @@ public class WaterCreditService {
                     .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
         }
 
-        // ✅ Generate `Date` for Earning and Expiry Dates
+        //  Generate `Date` for Earning and Expiry Dates
         Date earningDate = new Date();
         Date expiryDate = new Date(System.currentTimeMillis() + TimeUnit.DAYS.toMillis(180));
 
-        // ✅ Create and Save Water Credit Entry
+        //  Create and Save Water Credit Entry
         WaterCredit credit = WaterCredit.builder()
                 .user(usage.getWaterMeter().getUser())
                 .creditsEarned(creditsEarned.doubleValue())
