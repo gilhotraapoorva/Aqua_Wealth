@@ -50,6 +50,7 @@ export default function ApplyForLoan() {
     const totalAmount = amount * Math.pow(1 + rateDecimal, termYears);
     return (totalAmount - amount).toFixed(2); // Interest = A - P
   };
+ 
   
   const onSubmit = async (data) => {
     try {

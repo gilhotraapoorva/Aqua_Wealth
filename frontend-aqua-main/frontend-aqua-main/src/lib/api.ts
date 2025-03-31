@@ -144,6 +144,7 @@ export const getPaymentHistory = async (loanId: string) => {
 //     throw error;
 //   }
 // }
+
 export const fetchMeters = async () => {
   const response = await fetch(`${BASE_URL}/meters/all`);
   if (!response.ok) throw new Error("Failed to fetch meters");
@@ -175,20 +176,91 @@ export const addWaterMeter = async (meterData: any) => {
   return response.json();
 };
 // ✅ API call to add water usage
+// export const addWaterUsage = async (meterId: number, usageData: any) => {
+//   const response = await fetch(`${BASE_URL}/usage/add/${meterId}`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(usageData),
+//   });
+
+//   if (!response.ok) {
+//     const errorData = await response.json();
+//     throw new Error(errorData.message || "Failed to add usage");
+//   }
+//   return response.json();
+// };
+// In api.ts
+// In api.ts
 export const addWaterUsage = async (meterId: number, usageData: any) => {
-  const response = await fetch(`${BASE_URL}/usage/add/${meterId}`, {
+  const response = await fetch(`${BASE_URL}/usage/add/${meterId}`, {  // Updated endpoint
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(usageData),
+    body: JSON.stringify(usageData),  // Just send usage data now
   });
-
+  
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.message || "Failed to add usage");
   }
   return response.json();
 };
+// export const addWaterUsage = async (meterId: number, usageData: WaterUsage) => {
+//   const response = await fetch(`${BASE_URL}/usage/add/${meterId}`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(usageData),
+//   });
+  
+//   if (!response.ok) {
+//     const errorData = await response.json();
+//     throw new Error(errorData.message || "Failed to add usage");
+//   }
+//   return response.json();
+// };
+// export const addWaterUsage = async (usageData: { meterId: number; readingValue: string; readingDate: string }) => {
+//   if (!usageData.meterId) {
+//     throw new Error("Meter ID is required");
+//   }
 
+//   const response = await fetch(`${BASE_URL}/usage/add/${usageData.meterId}`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({
+//       readingValue: usageData.readingValue,
+//       readingDate: usageData.readingDate
+//     }),
+//   });
+  
+//   if (!response.ok) {
+//     const errorData = await response.json();
+//     throw new Error(errorData.message || "Failed to add usage");
+//   }
+//   return response.json();
+// };
+// export const addWaterUsage = async (usageData: any) => {
+//   // First find the meter ID by meter number
+//   const meters = await fetchMeters();
+//   const meter = meters.find((m: any) => m.meterNumber === usageData.meterNumber);
+  
+//   if (!meter) {
+//     throw new Error("Meter not found");
+//   }
+
+//   const response = await fetch(`${BASE_URL}/usage/add/${meter.id}`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({
+//       readingValue: usageData.readingValue,
+//       readingDate: usageData.readingDate
+//     }),
+//   });
+  
+//   if (!response.ok) {
+//     const errorData = await response.json();
+//     throw new Error(errorData.message || "Failed to add usage");
+//   }
+//   return response.json();
+// };
 export const fetchUsageRecords = async () => {
   const response = await fetch(`${BASE_URL}/usage/all`);
   const data = await response.json();
