@@ -23,18 +23,7 @@ public class InsurancePolicy {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false) //  Ensure proper linking to User table
     private User user;
-//    private BigDecimal remainingAmount;
-//
-//    public BigDecimal getRemainingAmount() {
-//        return remainingAmount;
-//    }
-//
-//    public void setRemainingAmount(BigDecimal remainingAmount) {
-//        this.remainingAmount = remainingAmount;
-//    }
 
-
-//    @Column(name = "government_id", nullable = false)
     @JsonProperty("governmentId")
     @Column(name = "government_id", nullable = false)
     private String governmentId;
@@ -57,11 +46,7 @@ public class InsurancePolicy {
 
     @Column(name = "status", nullable = false)
     private String status;
-//    @Column(name = "start_date", nullable = false)
-//    private LocalDate startDate = LocalDate.now();  // Default to today
-//
-//    @Column(name = "end_date", nullable = false)
-//    private LocalDate endDate = startDate.plusYears(1);  // Auto-calculate
+
 
     public Long getPolicyId() {
         return policyId;

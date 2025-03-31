@@ -58,8 +58,7 @@ public class InsuranceClaim {
     @Enumerated(EnumType.STRING)
     private ClaimStatus status;
 
-    private String verificationNotes;
-
+    //private String verificationNotes;
     private String place;  //  New field added
 
     //  Getter and Setter for place
@@ -115,9 +114,9 @@ public class InsuranceClaim {
         this.status = status;
     }
 
-    public void setVerificationNotes(String verificationNotes) {
-        this.verificationNotes = verificationNotes;
-    }
+//    public void setVerificationNotes(String verificationNotes) {
+//        this.verificationNotes = verificationNotes;
+//    }
 
     // ✅ Ensuring proper getters
     public InsurancePolicy getPolicy() {
@@ -133,14 +132,10 @@ public class InsuranceClaim {
                 ", incidentDate=" + incidentDate +
                 ", claimDate=" + claimDate +
                 ", status=" + status +
-                ", verificationNotes='" + verificationNotes + '\'' +
                 ", place='" + place + '\'' +
                 '}';
     }
 
-    public String getVerificationNotes() {
-        return verificationNotes;
-    }
 }
 
 

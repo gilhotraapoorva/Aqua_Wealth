@@ -33,7 +33,7 @@ public class WaterUsageController {
             record.put("meterNumber", usage.getWaterMeter().getMeterNumber()); // ✅ Include meterNumber
             record.put("readingValue", usage.getReadingValue());
             record.put("readingDate", usage.getReadingDate());
-            record.put("efficiencyScore", usage.getEfficiencyScore());
+//            record.put("efficiencyScore", usage.getEfficiencyScore());
             return record;
         }).collect(Collectors.toList());
 

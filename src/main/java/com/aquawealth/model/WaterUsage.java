@@ -20,7 +20,7 @@ public class WaterUsage {
     private Double readingValue;
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="dd-MM-yyyy", timezone = "UTC")
     private Date readingDate;
-    private Double efficiencyScore;
+//    private Double efficiencyScore;
 
     public WaterUsage(){}
 
@@ -29,7 +29,7 @@ public class WaterUsage {
         this.waterMeter = waterMeter;
         this.readingValue = readingValue;
         this.readingDate = readingDate;
-        this.efficiencyScore = efficiencyScore;
+//        this.efficiencyScore = efficiencyScore;
     }
 
     public Long getUsageId() {
@@ -64,12 +64,12 @@ public class WaterUsage {
         this.readingDate = readingDate;
     }
 
-    public Double getEfficiencyScore() {
-        return efficiencyScore;
-    }
-
-    public void setEfficiencyScore(Double efficiencyScore) {
-        this.efficiencyScore = efficiencyScore;
-    }
+//    public Double getEfficiencyScore() {
+//        return efficiencyScore;
+//    }
+//
+//    public void setEfficiencyScore(Double efficiencyScore) {
+//        this.efficiencyScore = efficiencyScore;
+//    }
 }
 
