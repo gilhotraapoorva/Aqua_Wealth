@@ -1,5 +1,4 @@
 # Aqua_Wealth
-# Aqua-Wealth
 ## Problem Statement
 
 In 2024, India faced extreme weather events on **255 out of 274 days**, causing severe agricultural losses:
